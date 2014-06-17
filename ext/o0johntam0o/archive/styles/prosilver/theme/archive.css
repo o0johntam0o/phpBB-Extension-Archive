@@ -1,0 +1,183 @@
+/**
+*
+* @package phpBB Extension - Archive
+* @copyright (c) 2014 o0johntam0o
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
+
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: #dbd7d1;
+	color: #000000;
+	font-size: 14px;
+	text-align: left;
+}
+
+a, a:visited
+{
+	text-decoration: none;
+}
+
+a
+{
+	color: #0000ff;
+}
+
+a:visited
+{
+	color: #551A8B;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+#archive_header, #archive_footer
+{
+	background-color: #dcdcdc;
+	padding: 12px;
+	margin: 12px;
+	border: solid #536482 1px;
+}
+
+#archive_header a, #archive_header a:visited, #archive_footer a, #archive_footer a:visited
+{
+	color: #0000ff;
+}
+
+#archive_header
+{
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+	color: #4a5a73;
+}
+
+#archive_main
+{
+	background-color: #eeeeee;
+	margin: 12px;
+	border: solid #536482 1px;
+	padding: 20px;
+}
+
+#archive_footer
+{
+	text-align: center;
+	font-size: 12px;
+}
+
+.archive_page_count
+{
+	text-align: center;
+}
+
+.archive_topic
+{
+	padding-left: 25px;
+}
+
+.archive_topic b
+{
+	color: #bc2a4d;
+}
+
+.archive_forum_1
+{
+	padding-left: 20px;
+}
+.archive_forum_2
+{
+	padding-left: 70px;
+}
+.archive_forum_3
+{
+	padding-left: 120px;
+}
+.archive_forum_4
+{
+	padding-left: 170px;
+}
+.archive_forum_5
+{
+	padding-left: 220px;
+}
+.archive_forum_6
+{
+	padding-left: 270px;
+}
+.archive_forum_7
+{
+	padding-left: 320px;
+}
+.archive_forum_8
+{
+	padding-left: 370px;
+}
+.archive_forum_9
+{
+	padding-left: 420px;
+}
+.archive_forum_10
+{
+	padding-left: 470px;
+}
+
+
+/* FOR VIEW POSTS */
+#archive_topic_title
+{
+	text-align: center;
+	padding: 20px;
+}
+.archive_post
+{
+	border: solid #999999 1px;
+	padding: 12px;
+	margin: 5px;
+	background-color: #ffffff;
+}
+.archive_post h1
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #115098;
+}
+.archive_post b
+{
+	color: #bc2a4d;
+}
+
+#archive_login_form
+{
+	border: solid #999999 1px;
+	padding: 12px;
+	margin: 5px;
+	background-color: #c8c8c8;
+}
+#archive_login_form input[type="password"]
+{
+	margin-left: 5px;
+	width: 200px;
+	height: 20px;
+}
+#archive_login_form input[type="submit"]
+{
+	margin-left: 5px;
+	width: 80px;
+	height: 25px;
+}
+#archive_login_form label
+{
+	margin: 5px;
+	font-weight: bold;
+	font-style: italic;
+}
+#archive_login_form fieldset
+{
+	border: none;
+}

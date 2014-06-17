@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
+		<meta http-equiv="content-style-type" content="text/css" />
+		<meta http-equiv="content-language" content="{S_USER_LANG}" />
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="resource-type" content="document" />
+		<meta name="distribution" content="global" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		{META}
+		<title><!-- IF ARCHIVE_TITLE_TOPIC -->{ARCHIVE_TITLE_TOPIC} <!-- IF ARCHIVE_POST_PAGE -->[{L_ARCHIVE_PAGE} {ARCHIVE_POST_PAGE}] <!-- ENDIF -->&bull; <!-- ENDIF --><!-- IF ARCHIVE_TITLE_FORUM -->{ARCHIVE_TITLE_FORUM} <!-- IF ARCHIVE_TOPIC_PAGE -->[{L_ARCHIVE_PAGE} {ARCHIVE_TOPIC_PAGE}] <!-- ENDIF -->&bull; <!-- ENDIF -->{L_ARCHIVE_MOD} &bull; {SITENAME}</title>
+		<link href="{ARCHIVE_STYLE}" rel="stylesheet" type="text/css"/>
+		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+	</head>
+	<body>
+		<div id="archive_header">
+			<a href="{ARCHIVE_LINK_HOME_FULL}">[{L_INDEX}]</a>&nbsp;&#62;&#62;&nbsp;
+			<a href="{ARCHIVE_LINK_HOME}">{L_ARCHIVE_MOD}</a>
+			<!-- IF ARCHIVE_ROW_PARENT -->
+				<!-- BEGIN archive_row_parent -->
+					&nbsp;&#62;&#62;&nbsp;<a href="{archive_row_parent.ARCHIVE_ROW_PARENT_LINK}">{archive_row_parent.ARCHIVE_ROW_PARENT_NAME}</a>
+				<!-- END archive_row_parent -->
+			<!-- ENDIF -->
+		</div>
+		
+		
+		<div id="archive_main">
+		<!-- IF ARCHIVE_AVAILABLE -->
+			<!-- IF ARCHIVE_PAGE_COUNT -->
+				<div class="archive_page_count">
+					<!-- BEGIN archive_page -->
+						<!-- IF archive_page.ARCHIVE_PAGE_LINK eq '0' -->
+							&nbsp;[{archive_page.ARCHIVE_PAGE_NUM}]&nbsp;
+						<!-- ELSE -->
+							<a href="{archive_page.ARCHIVE_PAGE_LINK}" title="{L_ARCHIVE_PAGE} {archive_page.ARCHIVE_PAGE_NUM}">&nbsp;[{archive_page.ARCHIVE_PAGE_NUM}]&nbsp;</a>
+						<!-- ENDIF -->
+					<!-- END archive_page -->
+				</div><hr/>
+			<!-- ENDIF -->
+			
+			<!-- IF not ARCHIVE_POST_AVAILABLE -->
+				<!-- BEGIN archive_row -->
+					<!-- IF archive_row.ARCHIVE_ROW_FORUM -->
+						<!-- IF archive_row.ARCHIVE_ROW_LEVEL eq 1 -->
+							<div class="archive_forum_1">[ &bull; ] <a href="{archive_row.ARCHIVE_FORUMS_LINK}">{archive_row.ARCHIVE_FORUMS_NAME}</a><br/></div>
+						<!-- ENDIF -->
+						<!-- IF archive_row.ARCHIVE_ROW_LEVEL > 1 -->
+							<div class="archive_forum_{archive_row.ARCHIVE_ROW_LEVEL}">&#62; <a href="{archive_row.ARCHIVE_FORUMS_LINK}">{archive_row.ARCHIVE_FORUMS_NAME}</a><br/></div>
+						<!-- ENDIF -->
+					<!-- ENDIF -->
+					
+					<!-- IF not archive_row.ARCHIVE_ROW_FORUM -->
+						<div class="archive_topic">&bull; <a href="{archive_row.ARCHIVE_TOPICS_LINK}">{archive_row.ARCHIVE_TOPICS_NAME}</a><br/></div>
+					<!-- ENDIF -->
+				<!-- END archive_row -->
+			<!-- ELSE -->
+				<div id="archive_topic_title">
+					<a href="{ARCHIVE_TOPIC_LINK_FULL}">{L_ARCHIVE_VIEW_FULL_STORY_EXPLAIN} &quot;{ARCHIVE_TOPIC_NAME}&quot;</a>
+				</div>
+				<!-- BEGIN archive_post -->
+					<div class="archive_post">
+						<h1>
+							<b>{archive_post.ARCHIVE_POST_AUTHOR}:</b> {archive_post.ARCHIVE_POST_SUBJECT} <i>({archive_post.ARCHIVE_POST_TIME})</i>
+						</h1>
+						<p>{archive_post.ARCHIVE_POST_TEXT}</p>
+					</div>
+				<!-- END archive_post -->
+			<!-- ENDIF -->
+					
+			<!-- IF ARCHIVE_PAGE_COUNT -->
+				<hr/><div class="archive_page_count">
+					<!-- BEGIN archive_page -->
+						<!-- IF archive_page.ARCHIVE_PAGE_LINK eq '0' -->
+							&nbsp;[{archive_page.ARCHIVE_PAGE_NUM}]&nbsp;
+						<!-- ELSE -->
+							<a href="{archive_page.ARCHIVE_PAGE_LINK}" title="{L_ARCHIVE_PAGE} {archive_page.ARCHIVE_PAGE_NUM}">&nbsp;[{archive_page.ARCHIVE_PAGE_NUM}]&nbsp;</a>
+						<!-- ENDIF -->
+					<!-- END archive_page -->
+				</div>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<!-- IF ARCHIVE_FORUM_PROTECTED -->
+			<div id="archive_topic_title">{L_ARCHIVE_FORUM_PASSWORD}</div>
+			<div class="archive_post">
+				<!-- IF ARCHIVE_LOGIN_ERROR -->
+				<h1><b>{ARCHIVE_LOGIN_ERROR}</b></h1>
+				<!-- ENDIF -->
+				<form id="archive_login_form" method="post" action="{S_ARCHIVE_LOGIN_ACTION}">
+				<fieldset>
+				{S_FORM_TOKEN}
+					<label for="password">{L_PASSWORD}:</label>
+					<input type="password" name="password" id="password" size="25" />
+					{S_ARCHIVE_HIDDEN_FIELDS}
+					<input type="submit" name="login" id="login" value="{L_LOGIN}" />
+					{S_LOGIN_REDIRECT}
+				</fieldset>
+				</form>
+			</div>
+			<!-- ELSE -->
+			{L_ARCHIVE_NO_FORUM_OR_NO_FORUMS}
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+		</div>
+		
+		<div id="archive_footer">
+			<a href="https://www.phpbb.com/customise/db/mod/forum_archive_ii/">Archive Ext</a> by o0johntam0o<br/>
+			{CREDIT_LINE}
+			<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
+			<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
+			<!-- IF U_MCP --><br /><strong><a href="{U_MCP}">{L_MCP}</a></strong><!-- ENDIF -->
+			<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
+		</div>
+	</body>
+</html>

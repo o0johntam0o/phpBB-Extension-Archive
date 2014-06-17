@@ -1,0 +1,24 @@
+{
+	"name": "o0johntam0o/archive",
+	"type": "phpbb-extension",
+	"description": "An archive version for your forum (Faster in loading pages). 100% xHTML 1.0 Strict valid",
+	"homepage": "https://github.com/o0johntam0o/phpBB-Archive-Ext",
+	"version": "1.0.0",
+	"time": "2014-06-15",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Huynh Buu Tam",
+			"email": "o0johntam0o@gmail.com",
+			"homepage": "",
+			"role": "Lead Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3",
+		"phpbb/phpbb": "3.1.*@dev"
+	},
+	"extra": {
+		"display-name": "Archive"
+	}
+}

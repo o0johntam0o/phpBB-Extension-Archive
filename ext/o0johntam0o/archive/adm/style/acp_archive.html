@@ -1,0 +1,56 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ARCHIVE_TITLE_ACP}</h1>
+<p>{S_ARCHIVE_VERSION} <a href="https://www.phpbb.com/customise/db/author/o0johntam0o/" title="o0johntam0o@gmail.com">[&copy;]</a></p>
+
+<!-- IF S_ARCHIVE_WARNING -->
+<div class="errorbox">
+	<h3>{L_WARNING}</h3>
+	<p>{ERROR_MSG}</p>
+</div>
+<!-- ENDIF -->
+
+<form id="acp_archive" method="post" action="{U_ACTION}">
+	<fieldset>
+		<dl>
+			<dt><label>{L_ARCHIVE_ENABLE}:</label><br /><span>{L_ARCHIVE_ENABLE_EXPLAIN}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="archive_enable" value="1" id="archive_enable_yes"<!-- IF S_ARCHIVE_ENABLE --> checked="checked"<!-- ENDIF --> />
+				<label for="archive_enable_yes"> {L_YES}</label>
+				<input type="radio" class="radio" name="archive_enable" value="0" id="archive_enable_no"<!-- IF not S_ARCHIVE_ENABLE --> checked="checked"<!-- ENDIF --> />
+				<label for="archive_enable_no"> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="archive_topics_per_page">{L_ARCHIVE_TOPICS_PER_PAGE}:</label><br /><span>{L_ARCHIVE_TOPICS_PER_PAGE_EXPLAIN}</span></dt>
+			<dd>
+				<input type="text" maxlength="4" size="4" name="archive_topics_per_page" value="{S_ARCHIVE_TOPICS_PER_PAGE}" id="archive_topics_per_page" />
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="archive_posts_per_page">{L_ARCHIVE_POSTS_PER_PAGE}:</label><br /><span>{L_ARCHIVE_POSTS_PER_PAGE_EXPLAIN}</span></dt>
+			<dd>
+				<input type="text" maxlength="4" size="4" name="archive_posts_per_page" value="{S_ARCHIVE_POSTS_PER_PAGE}" id="archive_posts_per_page" />
+			</dd>
+		</dl>
+		<dl>
+			<dt><label>{L_ARCHIVE_HIDE_MOD}:</label><br /><span>{L_ARCHIVE_HIDE_MOD_EXPLAIN}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="archive_hide_mod" value="1" id="archive_hide_mod_yes"<!-- IF S_ARCHIVE_HIDE_MOD --> checked="checked"<!-- ENDIF --> />
+				<label for="archive_hide_mod_yes"> {L_YES}</label>
+				<input type="radio" class="radio" name="archive_hide_mod" value="0" id="archive_hide_mod_no"<!-- IF not S_ARCHIVE_HIDE_MOD --> checked="checked"<!-- ENDIF --> />
+				<label for="archive_hide_mod_no"> {L_NO}</label>
+			</dd>
+		</dl>
+	</fieldset>
+	
+	<fieldset>
+		<legend>{L_ACP_SUBMIT_CHANGES}</legend>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->
