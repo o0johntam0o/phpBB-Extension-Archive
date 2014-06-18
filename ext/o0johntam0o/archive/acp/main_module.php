@@ -20,7 +20,7 @@ class main_module
 		global $config, $request, $phpbb_log;
 
 		$this->tpl_name = 'acp_archive';
-		$this->page_title = $user->lang('ARCHIVE_TITLE_ACP');
+		$this->page_title = $user->lang['ARCHIVE_TITLE_ACP'];
 		add_form_key('o0johntam0o/acp_archive');
 
 		if ($request->is_set_post('submit'))
@@ -36,7 +36,7 @@ class main_module
 			$config->set('archive_hide_mod', $request->variable('archive_hide_mod', 1));
 			
 			$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'ARCHIVE_LOG_MSG');
-			trigger_error($user->lang('ARCHIVE_SAVED') . adm_back_link($this->u_action));
+			trigger_error($user->lang['ARCHIVE_SAVED'] . adm_back_link($this->u_action));
 		}
 		
 		$template->assign_vars(array(

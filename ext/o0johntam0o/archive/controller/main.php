@@ -512,6 +512,8 @@ class main
 
 	public function base($f = 0, $t = 0, $page = 0)
 	{
+		global $phpbb_path_helper;
+		
 		// $this->pageview_t = $request->variable('t', 0);
 		// $this->pageview_f = $request->variable('f', 0);
 		// $this->pageview_page = $request->variable('page', 0);
@@ -756,7 +758,7 @@ class main
 		}
 
 		$this->template->assign_vars(array(
-			'ARCHIVE_STYLE'				=> "{$this->root_path}/ext/o0johntam0o/archive/style/prosilver/theme/archive.css",
+			'ARCHIVE_STYLE'				=> $phpbb_path_helper->update_web_root_path($this->root_path . 'ext/o0johntam0o/archive/styles/prosilver/theme/archive.css'),
 			'ARCHIVE_LINK_HOME'			=> $this->helper->route('archive_base_controller'),
 			'ARCHIVE_LINK_HOME_FULL'	=> append_sid("{$this->root_path}index.$this->php_ext"),
 			));

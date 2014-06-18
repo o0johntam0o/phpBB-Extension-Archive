@@ -21,7 +21,7 @@ class main_info
 			'modes'		=> array(
 				'config_archive'	=> array(
 					'title' => 'ARCHIVE_TITLE_ACP',
-					'auth' => 'acl_a_board',
+					'auth' => 'o0johntam0o/archive && acl_a_board',
 					'cat' => array('ARCHIVE_TITLE_ACP')
 				),
 			),
