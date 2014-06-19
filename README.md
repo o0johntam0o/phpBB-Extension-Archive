@@ -31,6 +31,4 @@ Copy ```./ext/o0johntam0o/archive/*``` to ```<phpBB root>/ext/o0johntam0o/archiv
 
 ## Task
 
-* Change: append_sid()
-
-* Fix: link to archive.css
+* Improve performance
