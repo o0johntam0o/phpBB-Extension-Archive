@@ -7,7 +7,7 @@ services:
             - @user
             - @config
             - @auth
-            #- @request
+            - @request
             - @dbal.conn
             - @passwords.manager
             - %core.root_path%

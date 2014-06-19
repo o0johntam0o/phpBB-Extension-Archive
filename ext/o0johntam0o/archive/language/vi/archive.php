@@ -22,7 +22,10 @@ $lang = array_merge($lang, array(
 	'ARCHIVE_MOD'						=> 'Bản lưu trữ',
 	'ARCHIVE_PAGE'						=> 'Trang ',
 	'ARCHIVE_JUMP'						=> 'Chuyển đến trang lưu trữ',
-	'ARCHIVE_UNAPPROVED'				=> '<b>CHƯA DUYỆT</b>',
+	'ARCHIVE_NOT_VISIBLE'				=> '<b>[Không Hiện]</b>',
+	'ARCHIVE_POST_GLOBAL'				=> '<b>[Thông Báo Chung]</b>',
+	'ARCHIVE_POST_ANNOUNCE'				=> '<b>[Thông Báo]</b>',
+	'ARCHIVE_POST_STICKY'				=> '<b>[Chú Ý]</b>',
 	
 	'ARCHIVE_TITLE'						=> 'Archive Extension',
 	'ARCHIVE_TITLE_ACP'					=> 'Thiết lập Archive Extension',

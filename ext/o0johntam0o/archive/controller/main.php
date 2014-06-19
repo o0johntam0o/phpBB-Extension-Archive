@@ -7,25 +7,22 @@
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
-// TO-DO:
-// + Change: append_sid()
-// + Fix: link to archive.css
+
 namespace o0johntam0o\archive\controller;
 
 class main
 {
-	// protected $request;
-	protected $helper, $template, $user, $config, $auth, $db, $passwords_manager, $root_path, $php_ext;
+	protected $helper, $template, $user, $config, $auth, $request, $db, $passwords_manager, $root_path, $php_ext;
 	protected $pageview_t, $pageview_f, $pageview_page, $archive_enable, $topics_per_page, $posts_per_page, $hide_mod;
 
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, \phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\db\driver\driver $db, \phpbb\passwords\manager $passwords_manager, $root_path, $php_ext)
+	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, \phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\request\request $request, \phpbb\db\driver\driver $db, \phpbb\passwords\manager $passwords_manager, $root_path, $php_ext)
 	{
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
 		$this->config = $config;
 		$this->auth = $auth;
-		// $this->request = $request;
+		$this->request = $request;
 		$this->db = $db;
 		$this->passwords_manager = $passwords_manager;
 		$this->root_path = $root_path;
@@ -178,6 +175,7 @@ class main
 			'FROM'		=> array(FORUMS_TABLE => 'f'),
 			'ORDER_BY'	=> 'f.left_id ASC'
 			);
+		
 		if ($id > 0)
 		{
 			$archive_sql['SELECT']	= 'f.forum_id, f.forum_name';
@@ -187,7 +185,9 @@ class main
 		{
 			$archive_sql['SELECT']	= 'f.forum_id, f.parent_id, f.forum_name';
 		}
+		
 		$result = $this->db->sql_query($this->db->sql_build_query('SELECT', $archive_sql));
+		
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			if ($id > 0)
@@ -199,7 +199,9 @@ class main
 				$_fetch_forum_list[$row['forum_id']][$row['forum_name']] = $row['parent_id'];
 			}
 		}
+		
 		$this->db->sql_freeresult($result);
+		
 		if (isset($_fetch_forum_list))
 		{
 			return $_fetch_forum_list;
@@ -231,11 +233,21 @@ class main
 			if ($limit == 0 && $start == 0)
 			{
 				// For count
-				$tmp_sql = 'SELECT forum_topics_approved, forum_topics_unapproved FROM ' . FORUMS_TABLE . ' WHERE forum_id = ' . $id;
+				$tmp_sql = 'SELECT forum_topics_approved, forum_topics_unapproved, forum_topics_softdeleted FROM ' . FORUMS_TABLE . ' WHERE forum_id = ' . $id;
 				$result = $this->db->sql_query($tmp_sql);
-				$topic_count = (int) ($this->db->sql_fetchfield('forum_topics_approved'));
-				$topic_count = (int) (($this->auth->acl_get('m_approve', $id)) ? $topic_count + $this->db->sql_fetchfield('forum_topics_unapproved') : $topic_count);
+				$row = $this->db->sql_fetchrow($result);
+				
+				if ($this->auth->acl_get('m_approve', $id))
+				{
+					$topic_count = $row['forum_topics_approved'] + $row['forum_topics_unapproved'] + $row['forum_topics_softdeleted'];
+				}
+				else
+				{
+					$topic_count = $row['forum_topics_approved'];
+				}
+				
 				$this->db->sql_freeresult($result);
+				
 				return $topic_count;
 			}
 
@@ -248,25 +260,38 @@ class main
 			$archive_sql['WHERE']		.= ($this->auth->acl_get('m_approve', $id)) ? '' : ' AND t.topic_visibility = 1';
 			$archive_sql['ORDER_BY']	= 't.topic_last_post_time DESC';
 			$result = $this->db->sql_query($this->db->sql_build_query('SELECT', $archive_sql));
+			
 			while ($row = $this->db->sql_fetchrow($result))
 			{
-				$_fetch_topic_list[$row['topic_id']] = $row['topic_title'];
+				$_fetch_topic_list[$row['topic_id']] = $row['topic_title'] . " " . $this->user->lang['ARCHIVE_POST_GLOBAL'];
 			}
+			
 			$this->db->sql_freeresult($result);
 			// Fetch Announcements And Sticky
+			$archive_sql['SELECT'] .= ', t.topic_type';
 			$archive_sql['WHERE'] = "t.forum_id = $id AND " . $this->db->sql_in_set('t.topic_type', array(POST_STICKY, POST_ANNOUNCE));
 			$archive_sql['WHERE'] .= ($this->auth->acl_get('m_approve', $id)) ? '' : ' AND t.topic_visibility = 1';
 			$archive_sql['ORDER_BY'] = 't.topic_type DESC';
 			$result = $this->db->sql_query($this->db->sql_build_query('SELECT', $archive_sql));
+			
 			while ($row = $this->db->sql_fetchrow($result))
 			{
-				$_fetch_topic_list[$row['topic_id']] = $row['topic_title'];
+				if ($row['topic_type'] == POST_ANNOUNCE)
+				{
+					$_fetch_topic_list[$row['topic_id']] = $row['topic_title'] . " " . $this->user->lang['ARCHIVE_POST_ANNOUNCE'];
+				}
+				else
+				{
+					$_fetch_topic_list[$row['topic_id']] = $row['topic_title'] . " " . $this->user->lang['ARCHIVE_POST_STICKY'];
+				}
 			}
+			
 			$this->db->sql_freeresult($result);
 			// Fetch Normal Topic
 			$archive_sql['WHERE'] = "t.forum_id = $id AND t.topic_type = " . POST_NORMAL;
 			$archive_sql['WHERE'] .= ($this->auth->acl_get('m_approve', $id)) ? '' : ' AND t.topic_visibility = 1';
 			$archive_sql['ORDER_BY'] = 't.topic_last_post_time DESC';
+			
 			if ($limit > 0 && $start == 0)
 			{
 				// For first page
@@ -291,9 +316,10 @@ class main
 				}
 				else
 				{
-					$_fetch_topic_list[$row['topic_id']] = $row['topic_title'] . " " . $this->user->lang['ARCHIVE_UNAPPROVED'];
+					$_fetch_topic_list[$row['topic_id']] = $row['topic_title'] . " " . $this->user->lang['ARCHIVE_NOT_VISIBLE'];
 				}
 			}
+			
 			$this->db->sql_freeresult($result);
 			
 			if (isset($_fetch_topic_list))
@@ -330,10 +356,19 @@ class main
 			if ($limit == 0 && $start == 0)
 			{
 				// For count
-				$tmp_sql = 'SELECT topic_posts_approved, topic_posts_unapproved FROM ' . TOPICS_TABLE . ' WHERE topic_id = ' . $id;
+				$tmp_sql = 'SELECT topic_posts_approved, topic_posts_unapproved, topic_posts_softdeleted FROM ' . TOPICS_TABLE . ' WHERE topic_id = ' . $id;
 				$result = $this->db->sql_query($tmp_sql);
-				$post_count = (int) ($this->db->sql_fetchfield('topic_posts_approved'));
-				$post_count = (int) (($this->auth->acl_get('m_approve', $id)) ? $post_count + $this->db->sql_fetchfield('topic_posts_unapproved') : $post_count);
+				$row = $this->db->sql_fetchrow($result);
+				
+				if ($this->auth->acl_get('m_approve', $id))
+				{
+					$post_count = $row['topic_posts_approved'] + $row['topic_posts_unapproved'] + $row['topic_posts_softdeleted'];
+				}
+				else
+				{
+					$post_count = $row['forum_topics_approved'];
+				}
+				
 				$this->db->sql_freeresult($result);
 				return $post_count;
 			}
@@ -369,7 +404,7 @@ class main
 				}
 				else
 				{
-					$_fetch_post_list[$row['post_time']][$row['poster_id']] = array($row['post_subject'] . " " . $this->user->lang['ARCHIVE_UNAPPROVED'] => $row['post_text']);
+					$_fetch_post_list[$row['post_time']][$row['poster_id']] = array($row['post_subject'] . " " . $this->user->lang['ARCHIVE_NOT_VISIBLE'] => $row['post_text']);
 				}
 			}
 			$this->db->sql_freeresult($result);
@@ -521,8 +556,19 @@ class main
 		$this->pageview_f = $f;
 		$this->pageview_t = $t;
 		$this->pageview_page = $page;
+
+		$this->template->assign_vars(array(
+			'ARCHIVE_STYLE'				=> $phpbb_path_helper->update_web_root_path($this->root_path . 'ext/o0johntam0o/archive/styles/prosilver/theme/archive.css'),
+			'ARCHIVE_LINK_HOME'			=> $this->helper->route('archive_base_controller'),
+			'ARCHIVE_LINK_HOME_FULL'	=> $phpbb_path_helper->update_web_root_path($this->root_path . 'index.' . $this->php_ext),
+			));
 		
-		if ($this->pageview_f == 0 && $this->archive_enable)
+		if (!$this->archive_enable)
+		{
+			return $this->helper->render('archive.html');
+		}
+		
+		if ($this->pageview_f == 0)
 		{
 			// ------ MAKE MAIN FORUMS OR CATEGORIES
 			$_fetch_forum_list = $this->fetch_forum_list();
@@ -550,11 +596,12 @@ class main
 				'U_MCP'		=> ($this->auth->acl_get('m_') || $this->auth->acl_getf_global('m_')) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=main&amp;mode=front') : '',
 				));
 		}
-		else if ($this->pageview_f > 0 && $this->archive_enable)
+		else if ($this->pageview_f > 0)
 		{
 			$this->template->assign_var('ARCHIVE_TITLE_FORUM', $this->fetch_forum_name($this->pageview_f));
 			// ------ MAKE THE PARENTS MENU
 			$_fetch_forum_list = $this->fetch_forum_list();
+			
 			if (is_array($_fetch_forum_list))
 			{
 				foreach ($_fetch_forum_list as $id => $arr)
@@ -719,7 +766,7 @@ class main
 					$this->template->assign_var('ARCHIVE_AVAILABLE', true);
 					$this->template->assign_vars(array(
 						'ARCHIVE_POST_AVAILABLE'	=> true,
-						'ARCHIVE_TOPIC_LINK_FULL'	=> append_sid("{$this->root_path}viewtopic.$this->php_ext", 'f=' . $this->pageview_f . '&amp;t=' . $this->pageview_t),
+						'ARCHIVE_TOPIC_LINK_FULL'	=> $phpbb_path_helper->update_web_root_path($this->root_path . 'viewtopic.' . $this->php_ext . '?f=' . $this->pageview_f . '&amp;t=' . $this->pageview_t),
 						'ARCHIVE_TOPIC_NAME'		=> $this->fetch_topic_title($this->pageview_t),
 						));
 					foreach($_fetch_post_list as $time => $this->author_subject_text)
@@ -756,12 +803,6 @@ class main
 				}
 			}
 		}
-
-		$this->template->assign_vars(array(
-			'ARCHIVE_STYLE'				=> $phpbb_path_helper->update_web_root_path($this->root_path . 'ext/o0johntam0o/archive/styles/prosilver/theme/archive.css'),
-			'ARCHIVE_LINK_HOME'			=> $this->helper->route('archive_base_controller'),
-			'ARCHIVE_LINK_HOME_FULL'	=> append_sid("{$this->root_path}index.$this->php_ext"),
-			));
 
 		return $this->helper->render('archive.html');
 	}

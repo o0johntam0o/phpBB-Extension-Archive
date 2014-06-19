@@ -22,7 +22,10 @@ $lang = array_merge($lang, array(
 	'ARCHIVE_MOD'						=> 'Archive',
 	'ARCHIVE_PAGE'						=> 'Page ',
 	'ARCHIVE_JUMP'						=> 'Jump to Archive',
-	'ARCHIVE_UNAPPROVED'				=> '<b>UN-APPROVED</b>',
+	'ARCHIVE_NOT_VISIBLE'				=> '<b>[Not Visible]</b>',
+	'ARCHIVE_POST_GLOBAL'				=> '<b>[Global Announcement]</b>',
+	'ARCHIVE_POST_ANNOUNCE'				=> '<b>[Announcement]</b>',
+	'ARCHIVE_POST_STICKY'				=> '<b>[Sticky]</b>',
 	
 	'ARCHIVE_TITLE'						=> 'Archive Extension',
 	'ARCHIVE_TITLE_ACP'					=> 'Archive Extension settings',
