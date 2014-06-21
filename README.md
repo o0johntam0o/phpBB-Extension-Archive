@@ -11,7 +11,13 @@ https://www.phpbb.com/customise/db/author/o0johntam0o/
 
 ## Description
 
-An archive version for your forum (Faster in loading pages). 100% xHTML 1.0 Strict valid
+Archive alows you to:
+
+* View forum in the fastest way (like Archive page in vBB)
+
+* It can be useful for mobile browser or search engines
+
+* 100% xHTML valid
 
 (Previous version: https://github.com/o0johntam0o/phpBB-Forum-Archive-II)
 

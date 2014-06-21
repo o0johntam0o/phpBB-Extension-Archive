@@ -35,8 +35,8 @@ class main_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
     {
         return array(
-            'core.user_setup'               => 'load_language_on_setup',
-            'core.page_header'              => 'add_page_header_link',
+            'core.user_setup'		=> 'load_language_on_setup',
+            'core.page_header'		=> 'assign_archive_link',
         );
     }
 	
@@ -50,7 +50,7 @@ class main_listener implements EventSubscriberInterface
         $event['lang_set_ext'] = $lang_set_ext;
     }
 
-    public function add_page_header_link($event)
+    public function assign_archive_link($event)
     {
 		if (!isset($this->config['archive_enable']) || !$this->config['archive_enable'])
 		{

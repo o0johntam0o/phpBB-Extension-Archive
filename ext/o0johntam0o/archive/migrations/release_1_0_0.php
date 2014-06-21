@@ -41,7 +41,7 @@ class release_1_0_0 extends \phpbb\db\migration\migration
                 'ARCHIVE_TITLE',
                 array(
                     'module_basename'   => '\o0johntam0o\archive\acp\main_module',
-                    'modes'             => array('config_archive'),
+                    'modes'             => array('archive_config'),
                 ),
             )),
 

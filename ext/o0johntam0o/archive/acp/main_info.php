@@ -19,7 +19,7 @@ class main_info
 			'title'		=> 'ARCHIVE_TITLE_ACP',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
-				'config_archive'	=> array(
+				'archive_config'	=> array(
 					'title' => 'ARCHIVE_TITLE_ACP',
 					'auth' => 'acl_a_board',
 					'cat' => array('ARCHIVE_TITLE_ACP')
