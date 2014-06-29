@@ -30,7 +30,7 @@ class main
 		
 		
 		$this->user->session_begin();
-		$this->auth->acl($user->data);
+		$this->auth->acl($this->user->data);
 		$this->user->setup('common');
 
 		$this->archive_enable = isset($this->config['archive_enable']) ? $this->config['archive_enable'] : 0;
@@ -548,10 +548,6 @@ class main
 	public function base($f = 0, $t = 0, $page = 0)
 	{
 		global $phpbb_path_helper;
-		
-		// $this->pageview_t = $request->variable('t', 0);
-		// $this->pageview_f = $request->variable('f', 0);
-		// $this->pageview_page = $request->variable('page', 0);
 		
 		$this->pageview_f = $f;
 		$this->pageview_t = $t;
