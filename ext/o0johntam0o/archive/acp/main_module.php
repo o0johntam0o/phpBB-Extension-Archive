@@ -20,7 +20,7 @@ class main_module
 		global $config, $request, $phpbb_log;
 
 		$this->tpl_name = 'acp_archive';
-		$this->page_title = $user->lang['ARCHIVE_TITLE_ACP'];
+		$this->page_title = $user->lang['ARCHIVE_TITLE'];
 		add_form_key('o0johntam0o/acp_archive');
 
 		if ($request->is_set_post('submit'))

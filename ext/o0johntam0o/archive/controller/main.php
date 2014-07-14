@@ -15,7 +15,7 @@ class main
 	protected $helper, $template, $user, $config, $auth, $request, $db, $passwords_manager, $root_path, $php_ext;
 	protected $pageview_t, $pageview_f, $pageview_page, $archive_enable, $topics_per_page, $posts_per_page, $hide_mod;
 
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, \phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\request\request $request, \phpbb\db\driver\driver $db, \phpbb\passwords\manager $passwords_manager, $root_path, $php_ext)
+	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, \phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\request\request $request, \phpbb\db\driver\driver_interface $db, \phpbb\passwords\manager $passwords_manager, $root_path, $php_ext)
 	{
 		$this->helper = $helper;
 		$this->template = $template;

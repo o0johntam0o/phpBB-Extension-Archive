@@ -28,7 +28,7 @@ $lang = array_merge($lang, array(
 	'ARCHIVE_POST_STICKY'				=> '<b>[Sticky]</b>',
 	
 	'ARCHIVE_TITLE'						=> 'Archive Extension',
-	'ARCHIVE_TITLE_ACP'					=> 'Archive Extension settings',
+	'ARCHIVE_TITLE_SETTINGS'			=> 'General settings',
 	'ARCHIVE_ENABLE'					=> 'Enable Archive Extension',
 	'ARCHIVE_ENABLE_EXPLAIN'			=> 'Do you want to use this extension now?',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'Topics per page',

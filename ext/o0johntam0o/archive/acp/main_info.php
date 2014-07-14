@@ -16,13 +16,13 @@ class main_info
 	{
 		return array(
 			'filename'	=> '\o0johntam0o\archive\acp\main_module',
-			'title'		=> 'ARCHIVE_TITLE_ACP',
+			'title'		=> 'ARCHIVE_TITLE',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
 				'archive_config'	=> array(
-					'title' => 'ARCHIVE_TITLE_ACP',
+					'title' => 'ARCHIVE_TITLE_SETTINGS',
 					'auth' => 'acl_a_board',
-					'cat' => array('ARCHIVE_TITLE_ACP')
+					'cat' => array('ARCHIVE_TITLE_SETTINGS')
 				),
 			),
 		);
