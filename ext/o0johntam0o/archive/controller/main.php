@@ -31,7 +31,6 @@ class main
 		
 		$this->user->session_begin();
 		$this->auth->acl($this->user->data);
-		$this->user->setup('common');
 
 		$this->archive_enable = isset($this->config['archive_enable']) ? $this->config['archive_enable'] : 0;
 		$this->topics_per_page = isset($this->config['archive_topics_per_page']) ? $this->config['archive_topics_per_page'] : 15;
@@ -110,7 +109,7 @@ class main
 			}
 
 			$this->template->assign_vars(array(
-				'S_ARCHIVE_LOGIN_ACTION'		=> build_url($this->helper->route('archive_view_topic_controller')),
+				'S_ARCHIVE_LOGIN_ACTION'		=> build_url($this->helper->route('archive_viewtopic_controller')),
 				'S_ARCHIVE_HIDDEN_FIELDS'		=> build_hidden_fields(array('f' => $id)))
 			);
 			return false;
@@ -171,22 +170,16 @@ class main
 			}
 		}
 		
-		$archive_sql = array(
-			'FROM'		=> array(FORUMS_TABLE => 'f'),
-			'ORDER_BY'	=> 'f.left_id ASC'
-			);
-		
 		if ($id > 0)
 		{
-			$archive_sql['SELECT']	= 'f.forum_id, f.forum_name';
-			$archive_sql['WHERE']	= "f.parent_id = $id";
+			$archive_sql = 'SELECT forum_id, forum_name FROM ' . FORUMS_TABLE . ' WHERE parent_id=' . $id . ' ORDER BY left_id ASC';
 		}
 		else
 		{
-			$archive_sql['SELECT']	= 'f.forum_id, f.parent_id, f.forum_name';
+			$archive_sql = 'SELECT forum_id, parent_id, forum_name FROM ' . FORUMS_TABLE . ' ORDER BY left_id ASC';
 		}
 		
-		$result = $this->db->sql_query($this->db->sql_build_query('SELECT', $archive_sql));
+		$result = $this->db->sql_query($archive_sql);
 		
 		while ($row = $this->db->sql_fetchrow($result))
 		{
@@ -366,7 +359,7 @@ class main
 				}
 				else
 				{
-					$post_count = $row['forum_topics_approved'];
+					$post_count = $row['topic_posts_approved'];
 				}
 				
 				$this->db->sql_freeresult($result);
@@ -581,7 +574,7 @@ class main
 								'ARCHIVE_ROW_FORUM'		=> true,
 								'ARCHIVE_ROW_LEVEL'		=> sizeof($this->count_sub_level($parent, $_fetch_forum_list)),
 								'ARCHIVE_FORUMS_NAME'	=> $name,
-								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('archive_view_forum_controller', array('f' => $id)),
+								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('archive_viewforum_controller', array('f' => $id)),
 								));
 						}
 					}
@@ -594,6 +587,10 @@ class main
 		}
 		else if ($this->pageview_f > 0)
 		{
+			// Correct the forum id in sessions table
+			$archive_sql = 'UPDATE ' . SESSIONS_TABLE . ' SET ' . $this->db->sql_build_array('UPDATE', array('session_forum_id' => $this->pageview_f)) . ' WHERE session_id="' . (string) $this->user->session_id . '"';
+			$this->db->sql_query($archive_sql);
+		
 			$this->template->assign_var('ARCHIVE_TITLE_FORUM', $this->fetch_forum_name($this->pageview_f));
 			// ------ MAKE THE PARENTS MENU
 			$_fetch_forum_list = $this->fetch_forum_list();
@@ -616,7 +613,7 @@ class main
 									{
 										$this->template->assign_block_vars('archive_row_parent', array(
 											'ARCHIVE_ROW_PARENT_NAME'		=> $this->fetch_forum_name($parent_link[$i]),
-											'ARCHIVE_ROW_PARENT_LINK'		=> $this->helper->route('archive_view_forum_controller', array('f' => $parent_link[$i])),
+											'ARCHIVE_ROW_PARENT_LINK'		=> $this->helper->route('archive_viewforum_controller', array('f' => $parent_link[$i])),
 										));
 									}
 								}
@@ -655,7 +652,7 @@ class main
 							{
 								$this->template->assign_block_vars('archive_page', array(
 									'ARCHIVE_PAGE_NUM'	=> $i,
-									'ARCHIVE_PAGE_LINK'	=> $this->helper->route('archive_view_forum_controller', array('f' => $this->pageview_f, 'page' => $i)),
+									'ARCHIVE_PAGE_LINK'	=> $this->helper->route('archive_viewforum_controller', array('f' => $this->pageview_f, 'page' => $i)),
 									));
 							}
 						}
@@ -677,7 +674,7 @@ class main
 								'ARCHIVE_ROW_FORUM'		=> true,
 								'ARCHIVE_ROW_LEVEL'		=> 1,
 								'ARCHIVE_FORUMS_NAME'	=> $name,
-								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('archive_view_forum_controller', array('f' => $id)),
+								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('archive_viewforum_controller', array('f' => $id)),
 								));
 						}
 					}
@@ -703,7 +700,7 @@ class main
 							$this->template->assign_block_vars('archive_row', array(
 								'ARCHIVE_ROW_FORUM'		=> false,
 								'ARCHIVE_TOPICS_NAME'	=> $title,
-								'ARCHIVE_TOPICS_LINK'	=> $this->helper->route('archive_view_topic_controller', array('f' => $this->pageview_f, 't' => $id)),
+								'ARCHIVE_TOPICS_LINK'	=> $this->helper->route('archive_viewtopic_controller', array('f' => $this->pageview_f, 't' => $id)),
 								));
 						}
 						$this->template->assign_vars(array(
@@ -739,7 +736,7 @@ class main
 						{
 							$this->template->assign_block_vars('archive_page', array(
 								'ARCHIVE_PAGE_NUM'	=> $i,
-								'ARCHIVE_PAGE_LINK'	=> $this->helper->route('archive_view_topic_controller', array('f' => $this->pageview_f, 't' => $this->pageview_t, 'page' => $i)),
+								'ARCHIVE_PAGE_LINK'	=> $this->helper->route('archive_viewtopic_controller', array('f' => $this->pageview_f, 't' => $this->pageview_t, 'page' => $i)),
 								));
 						}
 					}

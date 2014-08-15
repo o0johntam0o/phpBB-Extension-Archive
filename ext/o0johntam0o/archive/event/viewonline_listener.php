@@ -44,10 +44,10 @@ class viewonline_listener implements EventSubscriberInterface
 			if ($this->check_ext_page($event['row']['session_page']))
 			{
 				$forum_id = $event['row']['session_forum_id'];
-				if ($forum_id && $this->auth->acl_get('f_list', $forum_id))
+				if ($forum_id > 0 && $this->auth->acl_get('f_list', $forum_id))
 				{
 					$event['location'] = sprintf($this->user->lang['READING_FORUM'], $event['forum_data'][$forum_id]['forum_name']);
-					$event['location_url'] = $this->helper->route('archive_base_controller', array('f' => $forum_id));
+					$event['location_url'] = $this->helper->route('archive_viewforum_controller', array('f' => $forum_id));
 				}
 				else
 				{

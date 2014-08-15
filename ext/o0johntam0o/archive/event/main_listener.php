@@ -68,11 +68,11 @@ class main_listener implements EventSubscriberInterface
 		{
 			if ($this->request->variable('t', 0) > 0)
 			{
-				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_view_topic_controller', array('f' => $this->request->variable('f', 0), 't' => $this->request->variable('t', 0))));
+				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_viewtopic_controller', array('f' => $this->request->variable('f', 0), 't' => $this->request->variable('t', 0))));
 			}
 			else
 			{
-				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_view_forum_controller', array('f' => $this->request->variable('f', 0))));
+				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_viewforum_controller', array('f' => $this->request->variable('f', 0))));
 			}
 		}
 		else

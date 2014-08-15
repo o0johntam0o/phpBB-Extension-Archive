@@ -38,7 +38,7 @@ class search_listener implements EventSubscriberInterface
     public function append_link_to_archive($event)
     {
 		$event['tpl_ary'] = array_merge($event['tpl_ary'], array(
-			'U_VIEW_ARCHIVE'	=> (!empty($event['row']['post_id'])) ? $this->helper->route('archive_base_controller', array('f' => $event['row']['forum_id'], 't' => $event['row']['topic_id'])) : '',
+			'U_VIEW_ARCHIVE'	=> (!empty($event['row']['post_id'])) ? $this->helper->route('archive_viewtopic_controller', array('f' => $event['row']['forum_id'], 't' => $event['row']['topic_id'])) : '',
 		));
     }
 }

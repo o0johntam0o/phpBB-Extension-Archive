@@ -23,9 +23,7 @@ Archive alows you to:
 
 ## Requirement
 
-php: >=5.3.3
-
-phpbb: 3.1.*@dev
+phpbb: 3.1.x
 
 ## Installation
 
