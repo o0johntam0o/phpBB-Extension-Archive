@@ -1,18 +1,15 @@
 <?php
-
 /**
 *
-* @package phpBB Extension - Archive
+* Archive extension for the phpBB Forum Software package
+*
 * @copyright (c) 2014 o0johntam0o
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
 namespace o0johntam0o\archive\event;
 
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -68,16 +65,16 @@ class main_listener implements EventSubscriberInterface
 		{
 			if ($this->request->variable('t', 0) > 0)
 			{
-				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_viewtopic_controller', array('f' => $this->request->variable('f', 0), 't' => $this->request->variable('t', 0))));
+				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('o0johntam0o_archive_viewtopic_controller', array('f' => $this->request->variable('f', 0), 't' => $this->request->variable('t', 0))));
 			}
 			else
 			{
-				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_viewforum_controller', array('f' => $this->request->variable('f', 0))));
+				$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('o0johntam0o_archive_viewforum_controller', array('f' => $this->request->variable('f', 0))));
 			}
 		}
 		else
 		{
-			$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('archive_base_controller'));
+			$this->template->assign_var('U_ARCHIVE_PAGE', $this->helper->route('o0johntam0o_archive_base_controller'));
 		}
     }
 }

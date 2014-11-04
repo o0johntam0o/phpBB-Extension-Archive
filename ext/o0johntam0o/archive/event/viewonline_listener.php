@@ -1,10 +1,10 @@
 <?php
-
 /**
 *
-* @package phpBB Extension - Archive
+* Archive extension for the phpBB Forum Software package
+*
 * @copyright (c) 2014 o0johntam0o
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -47,12 +47,12 @@ class viewonline_listener implements EventSubscriberInterface
 				if ($forum_id > 0 && $this->auth->acl_get('f_list', $forum_id))
 				{
 					$event['location'] = sprintf($this->user->lang['READING_FORUM'], $event['forum_data'][$forum_id]['forum_name']);
-					$event['location_url'] = $this->helper->route('archive_viewforum_controller', array('f' => $forum_id));
+					$event['location_url'] = $this->helper->route('o0johntam0o_archive_viewforum_controller', array('f' => $forum_id));
 				}
 				else
 				{
 					$event['location'] = $this->user->lang['ARCHIVE_MOD'];
-					$event['location_url'] = $this->helper->route('archive_base_controller');
+					$event['location_url'] = $this->helper->route('o0johntam0o_archive_base_controller');
 				}
 			}
 		}

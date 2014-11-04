@@ -1,14 +1,14 @@
-archive_base_controller:
+o0johntam0o_archive_base_controller:
     pattern: /archive
     defaults: { _controller: o0johntam0o.archive.controller:base }
 
-archive_viewforum_controller:
+o0johntam0o_archive_viewforum_controller:
     pattern: /archive/{f}-{page}
     defaults: { _controller: o0johntam0o.archive.controller:base, f:0, page:0 }
     requirements:
         f: \d+
 
-archive_viewtopic_controller:
+o0johntam0o_archive_viewtopic_controller:
     pattern: /archive/{f}/{t}-{page}
     defaults: { _controller: o0johntam0o.archive.controller:base, f:0, t:0, page:0 }
     requirements:

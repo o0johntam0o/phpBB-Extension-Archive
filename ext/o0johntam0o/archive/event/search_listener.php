@@ -1,10 +1,10 @@
 <?php
-
 /**
 *
-* @package phpBB Extension - Archive
+* Archive extension for the phpBB Forum Software package
+*
 * @copyright (c) 2014 o0johntam0o
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -38,7 +38,7 @@ class search_listener implements EventSubscriberInterface
     public function append_link_to_archive($event)
     {
 		$event['tpl_ary'] = array_merge($event['tpl_ary'], array(
-			'U_VIEW_ARCHIVE'	=> (!empty($event['row']['post_id'])) ? $this->helper->route('archive_viewtopic_controller', array('f' => $event['row']['forum_id'], 't' => $event['row']['topic_id'])) : '',
+			'U_VIEW_ARCHIVE'	=> (!empty($event['row']['post_id'])) ? $this->helper->route('o0johntam0o_archive_viewtopic_controller', array('f' => $event['row']['forum_id'], 't' => $event['row']['topic_id'])) : '',
 		));
     }
 }

@@ -1,10 +1,10 @@
 {
 	"name": "o0johntam0o/archive",
 	"type": "phpbb-extension",
-	"description": "An archive version for your forum (Faster in loading pages). 100% xHTML 1.0 Strict valid",
+	"description": "An archive version for your forum (Faster in loading pages). 100% xHTML 1.0 Strict valid.",
 	"homepage": "https://github.com/o0johntam0o/phpBB-Extension-Archive",
 	"version": "1.0.0",
-	"time": "2014-06-15",
+	"keywords": ["o0johntam0o", "extension", "archive"],
 	"license": "GPL-2.0",
 	"authors": [
 		{
@@ -15,12 +15,21 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.3.3",
+		"composer/installers": "~1.0"
+	},
+	"require-dev": {
+		"phpbb/epv": "dev-master"
 	},
 	"extra": {
 		"display-name": "Archive",
 		"soft-require": {
-			"phpbb/phpbb": "3.1.*@dev"
+			"phpbb/phpbb": ">=3.1.0,<3.2.*@dev"
+		},
+		"version-check": {
+			"host": "version.phpbb.com",
+			"directory": "/phpbb-extensions",
+			"filename": "archive_versions.json"
 		}
 	}
 }

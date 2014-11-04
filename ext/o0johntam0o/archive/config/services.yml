@@ -1,18 +1,4 @@
 services:
-    o0johntam0o.archive.controller:
-        class: o0johntam0o\archive\controller\main
-        arguments:
-            - @controller.helper
-            - @template
-            - @user
-            - @config
-            - @auth
-            - @request
-            - @dbal.conn
-            - @passwords.manager
-            - %core.root_path%
-            - %core.php_ext%
-
     o0johntam0o.archive.listener:
         class: o0johntam0o\archive\event\main_listener
         arguments:
@@ -42,3 +28,17 @@ services:
             - @template
         tags:
             - { name: event.listener }
+
+    o0johntam0o.archive.controller:
+        class: o0johntam0o\archive\controller\main
+        arguments:
+            - @controller.helper
+            - @template
+            - @user
+            - @config
+            - @auth
+            - @request
+            - @dbal.conn
+            - @passwords.manager
+            - %core.root_path%
+            - %core.php_ext%

@@ -1,12 +1,20 @@
 <?php
-
 /**
 *
-* @package phpBB Extension - Archive [Spanish]
+* Archive extension for the phpBB Forum Software package [Spanish]
+*
 * @copyright (c) 2014 o0johntam0o
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
+
+/**
+* DO NOT CHANGE
+*/
+if (!defined('IN_PHPBB'))
+{
+	exit;
+}
 
 if (empty($lang) || !is_array($lang))
 {

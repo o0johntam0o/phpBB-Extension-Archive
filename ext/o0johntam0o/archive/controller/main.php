@@ -1,10 +1,10 @@
 <?php
-
 /**
 *
-* @package phpBB Extension - Archive
+* Archive extension for the phpBB Forum Software package
+*
 * @copyright (c) 2014 o0johntam0o
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -109,7 +109,7 @@ class main
 			}
 
 			$this->template->assign_vars(array(
-				'S_ARCHIVE_LOGIN_ACTION'		=> build_url($this->helper->route('archive_viewtopic_controller')),
+				'S_ARCHIVE_LOGIN_ACTION'		=> build_url($this->helper->route('o0johntam0o_archive_viewtopic_controller')),
 				'S_ARCHIVE_HIDDEN_FIELDS'		=> build_hidden_fields(array('f' => $id)))
 			);
 			return false;
@@ -547,8 +547,8 @@ class main
 		$this->pageview_page = $page;
 
 		$this->template->assign_vars(array(
-			'ARCHIVE_STYLE'				=> $phpbb_path_helper->update_web_root_path($this->root_path . 'ext/o0johntam0o/archive/styles/prosilver/theme/archive.css'),
-			'ARCHIVE_LINK_HOME'			=> $this->helper->route('archive_base_controller'),
+			'ARCHIVE_STYLE'				=> $phpbb_path_helper->update_web_root_path($this->root_path . 'ext/o0johntam0o/archive/styles/all/theme/archive.css'),
+			'ARCHIVE_LINK_HOME'			=> $this->helper->route('o0johntam0o_archive_base_controller'),
 			'ARCHIVE_LINK_HOME_FULL'	=> $phpbb_path_helper->update_web_root_path($this->root_path . 'index.' . $this->php_ext),
 			));
 		
@@ -574,7 +574,7 @@ class main
 								'ARCHIVE_ROW_FORUM'		=> true,
 								'ARCHIVE_ROW_LEVEL'		=> sizeof($this->count_sub_level($parent, $_fetch_forum_list)),
 								'ARCHIVE_FORUMS_NAME'	=> $name,
-								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('archive_viewforum_controller', array('f' => $id)),
+								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('o0johntam0o_archive_viewforum_controller', array('f' => $id)),
 								));
 						}
 					}
@@ -613,7 +613,7 @@ class main
 									{
 										$this->template->assign_block_vars('archive_row_parent', array(
 											'ARCHIVE_ROW_PARENT_NAME'		=> $this->fetch_forum_name($parent_link[$i]),
-											'ARCHIVE_ROW_PARENT_LINK'		=> $this->helper->route('archive_viewforum_controller', array('f' => $parent_link[$i])),
+											'ARCHIVE_ROW_PARENT_LINK'		=> $this->helper->route('o0johntam0o_archive_viewforum_controller', array('f' => $parent_link[$i])),
 										));
 									}
 								}
@@ -652,7 +652,7 @@ class main
 							{
 								$this->template->assign_block_vars('archive_page', array(
 									'ARCHIVE_PAGE_NUM'	=> $i,
-									'ARCHIVE_PAGE_LINK'	=> $this->helper->route('archive_viewforum_controller', array('f' => $this->pageview_f, 'page' => $i)),
+									'ARCHIVE_PAGE_LINK'	=> $this->helper->route('o0johntam0o_archive_viewforum_controller', array('f' => $this->pageview_f, 'page' => $i)),
 									));
 							}
 						}
@@ -674,7 +674,7 @@ class main
 								'ARCHIVE_ROW_FORUM'		=> true,
 								'ARCHIVE_ROW_LEVEL'		=> 1,
 								'ARCHIVE_FORUMS_NAME'	=> $name,
-								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('archive_viewforum_controller', array('f' => $id)),
+								'ARCHIVE_FORUMS_LINK'	=> $this->helper->route('o0johntam0o_archive_viewforum_controller', array('f' => $id)),
 								));
 						}
 					}
@@ -700,7 +700,7 @@ class main
 							$this->template->assign_block_vars('archive_row', array(
 								'ARCHIVE_ROW_FORUM'		=> false,
 								'ARCHIVE_TOPICS_NAME'	=> $title,
-								'ARCHIVE_TOPICS_LINK'	=> $this->helper->route('archive_viewtopic_controller', array('f' => $this->pageview_f, 't' => $id)),
+								'ARCHIVE_TOPICS_LINK'	=> $this->helper->route('o0johntam0o_archive_viewtopic_controller', array('f' => $this->pageview_f, 't' => $id)),
 								));
 						}
 						$this->template->assign_vars(array(
@@ -736,7 +736,7 @@ class main
 						{
 							$this->template->assign_block_vars('archive_page', array(
 								'ARCHIVE_PAGE_NUM'	=> $i,
-								'ARCHIVE_PAGE_LINK'	=> $this->helper->route('archive_viewtopic_controller', array('f' => $this->pageview_f, 't' => $this->pageview_t, 'page' => $i)),
+								'ARCHIVE_PAGE_LINK'	=> $this->helper->route('o0johntam0o_archive_viewtopic_controller', array('f' => $this->pageview_f, 't' => $this->pageview_t, 'page' => $i)),
 								));
 						}
 					}
