@@ -36,7 +36,7 @@ $lang = array_merge($lang, array(
 	'ARCHIVE_POST_STICKY'				=> '<b>[Nota]</b>',
 	
 	'ARCHIVE_TITLE'						=> 'Extensión Archivo',
-	'ARCHIVE_TITLE_SETTINGS'			=> 'Ajustes generales',
+	'ARCHIVE_TITLE_SETTINGS'			=> 'Ajustes',
 	'ARCHIVE_ENABLE'					=> 'Habilitar la extensión Archivo',
 	'ARCHIVE_ENABLE_EXPLAIN'			=> '¿Quiere utilizar esta extensión ahora?',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'Temas por página',

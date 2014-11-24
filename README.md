@@ -17,8 +17,6 @@ Archive alows you to:
 
 * It can be useful for mobile browser or search engines
 
-* 100% xHTML valid
-
 (Previous version: https://github.com/o0johntam0o/phpBB-Forum-Archive-II)
 
 ## Requirement

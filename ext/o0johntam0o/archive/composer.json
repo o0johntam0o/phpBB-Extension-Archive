@@ -1,7 +1,7 @@
 {
 	"name": "o0johntam0o/archive",
 	"type": "phpbb-extension",
-	"description": "An archive version for your forum (Faster in loading pages). 100% xHTML 1.0 Strict valid.",
+	"description": "An archive version for your forum (Faster in loading pages).",
 	"homepage": "https://github.com/o0johntam0o/phpBB-Extension-Archive",
 	"version": "1.0.0",
 	"keywords": ["o0johntam0o", "extension", "archive"],
