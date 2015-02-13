@@ -12,8 +12,34 @@ namespace o0johntam0o\archive\controller;
 
 class main
 {
-	protected $helper, $template, $user, $config, $auth, $request, $db, $passwords_manager, $root_path, $php_ext;
-	protected $pageview_t, $pageview_f, $pageview_page, $archive_enable, $topics_per_page, $posts_per_page, $hide_mod;
+	/** @var \phpbb\controller\helper */
+	protected $helper;
+	/** @var \phpbb\template\template */
+	protected $template;
+	/** @var \phpbb\user */
+	protected $user;
+	/** @var \phpbb\config\config */
+	protected $config;
+	/** @var \phpbb\auth\auth */
+	protected $auth;
+	/** @var \phpbb\request\request */
+	protected $request;
+	/** @var \phpbb\db\driver\driver_interface */
+	protected $db;
+	/** @var \phpbb\passwords\manager */
+	protected $passwords_manager;
+	/** @var string */
+	protected $root_path;
+	/** @var string */
+	protected $php_ext;
+	
+	protected $pageview_t;
+	protected $pageview_f;
+	protected $pageview_page;
+	protected $archive_enable;
+	protected $topics_per_page;
+	protected $posts_per_page;
+	protected $hide_mod;
 
 	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, \phpbb\config\config $config, \phpbb\auth\auth $auth, \phpbb\request\request $request, \phpbb\db\driver\driver_interface $db, \phpbb\passwords\manager $passwords_manager, $root_path, $php_ext)
 	{
@@ -39,18 +65,17 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id = forum_id
-	*	
-	*	RETURN
-	*		return login state
+	*	@param int $id forum_id
+	*	@param string $hash hash code
+	*	@return bolean login state
+	*	@access protected
 	*/
 	protected function check_forum_login($id = 0, $hash = '')
 	{
+		$id = (int) $id;
+		
 		if ($id > 0)
 		{
-			$id = (int) $id;
-			
 			$pass_input = utf8_normalize_nfc($this->request->variable('password', '', true));
 
 			$sql = 'SELECT forum_id
@@ -118,17 +143,16 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id = forum_id
-	*	
-	*	RETURN
-	*		return protection state
+	*	@param int $id forum_id
+	*	@return bolean protection state
+	*	@access protected
 	*/
 	protected function check_protected_forum($id = 0)
 	{
+		$id = (int)$id;
+		
 		if ($id > 0)
 		{
-			$id = (int)$id;
 			$result = $this->db->sql_query('SELECT f.forum_password
 									FROM ' . FORUMS_TABLE . ' f' . "
 									WHERE f.forum_id = $id");
@@ -150,12 +174,9 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id = parent_id
-	*	
-	*	RETURN (All forums)
-	*		If ($id > 0)	return array(forum_id => forum_name)
-	*		Else			return array(forum_id => array(forum_name => parent_id))
+	*	@param int $id parent_id
+	*	@return mixed NULL or array(forum_id => forum_name) or array(forum_id => array(forum_name => parent_id))
+	*	@access protected
 	*/
 	protected function fetch_forum_list($id = 0)
 	{
@@ -202,19 +223,18 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id		= forum_id
-	*		$limit	= Limitation of rows
-	*		$start	= Position of row
-	*	
-	*	RETURN
-	*		If ($id > 0)	return array(topic_id => topic_title)
+	*	@param int $id forum_id
+	*	@param int $limit limitation of rows
+	*	@param int $start position of row
+	*	@return mixed NULL or int topic count or array(topic_id => topic_title)
+	*	@access protected
 	*/
 	protected function fetch_topic_list($id = 0, $limit = 0, $start = 0)
 	{
+		$id = (int)$id;
+		
 		if ($id > 0)
 		{
-			$id = (int)$id;
 			$limit = (int)$limit;
 			$start = (int)$start;
 		
@@ -323,23 +343,22 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id			= topic_id
-	*		$limit		= Limitation of rows
-	*		$start		= Position of row
-	*		$forum_id	= forum_id
-	*	
-	*	RETURN
-	*		If ($id > 0 && $forum_id > 0)	return array(post_time => array(poster_id => array(post_subject => post_text)))
+	*	@param int $id topic_id
+	*	@param int $limit limitation of rows
+	*	@param int $start position of row
+	*	@param int $forum_id forum_id
+	*	@return mixed NULL or int post count or array(post_time => array(poster_id => array(post_subject => post_text)))
+	*	@access protected
 	*/
 	protected function fetch_post_list($id = 0, $limit = 0, $start = 0, $forum_id = 0)
 	{
+		$id = (int)$id;
+		$forum_id = (int)$forum_id;
+		
 		if ($id > 0 && $forum_id > 0)
 		{
-			$id = (int)$id;
 			$limit = (int)$limit;
 			$start = (int)$start;
-			$forum_id = (int)$forum_id;
 		
 			if ($this->check_protected_forum($forum_id))
 			{
@@ -419,17 +438,16 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id = user_id
-	*	
-	*	RETURN
-	*		If ($id > 0)	return username
+	*	@param int $id user_id
+	*	@return mixed NULL or string username
+	*	@access protected
 	*/
 	protected function fetch_username($id)
 	{
+		$id = (int)$id;
+		
 		if ($id > 0)
 		{
-			$id = (int)$id;
 			$archive_sql = array(
 				'SELECT'	=> 'u.username',
 				'FROM'		=> array(USERS_TABLE => 'u'),
@@ -449,17 +467,16 @@ class main
 	}	
 
 	/**
-	*	INPUT
-	*		$id = topic_id
-	*	
-	*	RETURN
-	*		If ($id > 0)	return topic_title
+	*	@param int $id topic_id
+	*	@return mixed NULL or string topic_title
+	*	@access protected
 	*/
 	protected function fetch_topic_title($id)
 	{
+		$id = (int)$id;
+		
 		if ($id > 0)
 		{
-			$id = (int)$id;
 			$archive_sql = array(
 				'SELECT'	=> 't.topic_title',
 				'FROM'		=> array(TOPICS_TABLE => 't'),
@@ -479,17 +496,16 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id = forum_id
-	*	
-	*	RETURN
-	*		If ($id > 0)	return forum_name
+	*	@param int $id forum_id
+	*	@return mixed NULL or string forum_name
+	*	@access protected
 	*/
 	protected function fetch_forum_name($id)
 	{
+		$id = (int)$id;
+		
 		if ($id > 0)
 		{
-			$id = (int)$id;
 			$archive_sql = array(
 				'SELECT'	=> 'f.forum_name',
 				'FROM'		=> array(FORUMS_TABLE => 'f'),
@@ -509,18 +525,17 @@ class main
 	}
 
 	/**
-	*	INPUT
-	*		$id			= forum_id
-	*		$arr		= array(forum_id => array(forum_name => parent_id))
-	*	
-	*	RETURN
-	*		If (is_array($arr))		return array()		(Branches)
+	*	@param int $id forum_id
+	*	@param array $arr array(forum_id => array(forum_name => parent_id))
+	*	@return mixed NULL or array branches
+	*	@access protected
 	*/
 	protected function count_sub_level($id, $arr)
 	{
+		$id = (int)$id;
+		
 		if (is_array($arr))
 		{
-			$id = (int)$id;
 			$count[1] = $id;
 			while ($id != 0)
 			{

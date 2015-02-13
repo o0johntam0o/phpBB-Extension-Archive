@@ -20,7 +20,7 @@ class main_info
 			'modes'		=> array(
 				'archive_config'	=> array(
 					'title' => 'ARCHIVE_TITLE_SETTINGS',
-					'auth' => 'acl_a_board',
+					'auth' => 'ext_o0johntam0o/archive && acl_a_board',
 					'cat' => array('ARCHIVE_TITLE_SETTINGS')
 				),
 			),

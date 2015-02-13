@@ -5,27 +5,10 @@ services:
             - @controller.helper
             - @template
             - @user
+            - @auth
             - @config
             - @request
             - %core.php_ext%
-        tags:
-            - { name: event.listener }
-
-    o0johntam0o.archive.viewonline_listener:
-        class: o0johntam0o\archive\event\viewonline_listener
-        arguments:
-            - @controller.helper
-            - @user
-            - @auth
-            - %core.php_ext%
-        tags:
-            - { name: event.listener }
-
-    o0johntam0o.archive.search_listener:
-        class: o0johntam0o\archive\event\search_listener
-        arguments:
-            - @controller.helper
-            - @template
         tags:
             - { name: event.listener }
 
