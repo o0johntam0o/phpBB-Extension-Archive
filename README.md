@@ -1,7 +1,7 @@
 phpBB Extension - Archive
 =======================
 
-An archive version for phpBB
+An archive version for phpBB (Faster in loading pages)
 
 ## Author
 

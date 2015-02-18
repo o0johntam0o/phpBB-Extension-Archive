@@ -2,6 +2,7 @@
 /**
 *
 * Archive extension for the phpBB Forum Software package [Spanish]
+* Spanish translation by phpbb-es (http://www.phpbb-es.com)
 *
 * @copyright (c) 2014 o0johntam0o
 * @license GNU General Public License, version 2 (GPL-2.0)

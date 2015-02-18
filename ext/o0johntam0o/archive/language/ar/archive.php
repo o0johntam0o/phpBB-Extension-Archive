@@ -2,11 +2,11 @@
 /**
 *
 * Archive extension for the phpBB Forum Software package [Arabic]
+* Arabic translation by Bassel Taha Alhitary (www.alhitary.net)
 *
 * @copyright (c) 2014 o0johntam0o
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
-* Translated By : Bassel Taha Alhitary - www.alhitary.net
 */
 
 /**

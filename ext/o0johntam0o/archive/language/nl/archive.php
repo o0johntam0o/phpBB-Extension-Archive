@@ -1,13 +1,14 @@
 <?php
 /**
 *
-* Archive extension for the phpBB Forum Software package [British English]
+* Archive extension for the phpBB Forum Software package [Dutch]
+* Dutch translation by Dutch Translators (https://github.com/dutch-translators)
 *
 * @copyright (c) 2014 o0johntam0o
-* Dutch translation by Dutch Translators (https://github.com/dutch-translators)
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
+
 /**
 * DO NOT CHANGE
 */
@@ -15,10 +16,12 @@ if (!defined('IN_PHPBB'))
 {
 	exit;
 }
+
 if (empty($lang) || !is_array($lang))
 {
 	$lang = array();
 }
+
 $lang = array_merge($lang, array(
 	'ARCHIVE_VIEW_FULL_STORY_EXPLAIN'	=> 'Klik om de geschiedenis te bekijken van ',
 	'ARCHIVE_BACK'						=> 'Terug naar bovenliggend forum',
