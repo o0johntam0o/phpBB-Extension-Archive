@@ -2,7 +2,6 @@
 /**
 *
 * Archive extension for the phpBB Forum Software package [Dutch]
-* Dutch translation by Dutch Translators (https://github.com/dutch-translators)
 *
 * @copyright (c) 2014 o0johntam0o
 * @license GNU General Public License, version 2 (GPL-2.0)

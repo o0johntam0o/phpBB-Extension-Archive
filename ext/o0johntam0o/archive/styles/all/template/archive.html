@@ -59,7 +59,7 @@
 				<!-- BEGIN archive_post -->
 					<div class="archive_post">
 						<h1>
-							<b>{archive_post.ARCHIVE_POST_AUTHOR}:</b> {archive_post.ARCHIVE_POST_SUBJECT} <i>({archive_post.ARCHIVE_POST_TIME})</i>
+							<b>{archive_post.ARCHIVE_POST_AUTHOR}{L_COLON}</b> {archive_post.ARCHIVE_POST_SUBJECT} <i>({archive_post.ARCHIVE_POST_TIME})</i>
 						</h1>
 						<p>{archive_post.ARCHIVE_POST_TEXT}</p>
 					</div>
@@ -87,7 +87,7 @@
 				<form id="archive_login_form" method="post" action="{S_ARCHIVE_LOGIN_ACTION}">
 				<fieldset>
 				{S_FORM_TOKEN}
-					<label for="password">{L_PASSWORD}:</label>
+					<label for="password">{L_PASSWORD}{L_COLON}</label>
 					<input type="password" name="password" id="password" size="25" />
 					{S_ARCHIVE_HIDDEN_FIELDS}
 					<input type="submit" name="login" id="login" value="{L_LOGIN}" />
