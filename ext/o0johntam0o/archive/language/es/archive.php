@@ -37,8 +37,6 @@ $lang = array_merge($lang, array(
 	
 	'ARCHIVE_TITLE'						=> 'Extensión Archivo',
 	'ARCHIVE_TITLE_SETTINGS'			=> 'Ajustes',
-	'ARCHIVE_ENABLE'					=> 'Habilitar la extensión Archivo',
-	'ARCHIVE_ENABLE_EXPLAIN'			=> '¿Quiere utilizar esta extensión ahora?',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'Temas por página',
 	'ARCHIVE_TOPICS_PER_PAGE_EXPLAIN'	=> 'Número de temas a mostrar en cada página',
 	'ARCHIVE_POSTS_PER_PAGE'			=> 'Mensajes por página',

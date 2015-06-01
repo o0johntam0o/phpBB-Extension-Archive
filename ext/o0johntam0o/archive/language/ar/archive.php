@@ -37,8 +37,6 @@ $lang = array_merge($lang, array(
 	
 	'ARCHIVE_TITLE'						=> 'الأرشيف',
 	'ARCHIVE_TITLE_SETTINGS'			=> 'الإعدادات',
-	'ARCHIVE_ENABLE'					=> 'تفعيل ',
-	'ARCHIVE_ENABLE_EXPLAIN'			=> 'هل تريد استخدام هذه الإضافة الآن ؟',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'المواضيع في كل صفحة ',
 	'ARCHIVE_TOPICS_PER_PAGE_EXPLAIN'	=> 'عدد المواضيع التي سيتم عرضها في كل صفحة',
 	'ARCHIVE_POSTS_PER_PAGE'			=> 'المشاركات في كل صفحة ',

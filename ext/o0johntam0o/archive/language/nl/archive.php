@@ -37,8 +37,6 @@ $lang = array_merge($lang, array(
 	
 	'ARCHIVE_TITLE'						=> 'Archief Extensie',
 	'ARCHIVE_TITLE_SETTINGS'			=> 'Algemene instellingen',
-	'ARCHIVE_ENABLE'					=> 'Archief extensie inschakelen',
-	'ARCHIVE_ENABLE_EXPLAIN'			=> 'Wil je deze extensie nu gebruiken?',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'Onderwerpen per pagina',
 	'ARCHIVE_TOPICS_PER_PAGE_EXPLAIN'	=> 'Het aantal onderwerpen dat per pagina getoond wordt',
 	'ARCHIVE_POSTS_PER_PAGE'			=> 'Berichten per pagina',

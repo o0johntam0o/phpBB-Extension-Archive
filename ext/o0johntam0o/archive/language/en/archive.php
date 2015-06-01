@@ -37,8 +37,6 @@ $lang = array_merge($lang, array(
 	
 	'ARCHIVE_TITLE'						=> 'Archive Extension',
 	'ARCHIVE_TITLE_SETTINGS'			=> 'Settings',
-	'ARCHIVE_ENABLE'					=> 'Enable Archive Extension',
-	'ARCHIVE_ENABLE_EXPLAIN'			=> 'Do you want to use this extension now?',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'Topics per page',
 	'ARCHIVE_TOPICS_PER_PAGE_EXPLAIN'	=> 'Number of topics shown in each page',
 	'ARCHIVE_POSTS_PER_PAGE'			=> 'Posts per page',

@@ -37,8 +37,6 @@ $lang = array_merge($lang, array(
 	
 	'ARCHIVE_TITLE'						=> 'Archive Extension',
 	'ARCHIVE_TITLE_SETTINGS'			=> 'Cài đặt',
-	'ARCHIVE_ENABLE'					=> 'Kích hoạt Archive Extension',
-	'ARCHIVE_ENABLE_EXPLAIN'			=> 'Bạn có muốn sử dụng tiện ích này ngay bây giờ không?',
 	'ARCHIVE_TOPICS_PER_PAGE'			=> 'Số chủ đề mỗi trang',
 	'ARCHIVE_TOPICS_PER_PAGE_EXPLAIN'	=> 'Số chủ đề hiển thị ở mỗi trang',
 	'ARCHIVE_POSTS_PER_PAGE'			=> 'Số bài viết mỗi trang',

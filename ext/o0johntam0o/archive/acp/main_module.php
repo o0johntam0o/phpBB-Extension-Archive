@@ -56,7 +56,6 @@ class main_module
 				trigger_error('FORM_INVALID');
 			}
 			
-			$this->config->set('archive_enable', $this->request->variable('archive_enable', 0));
 			$this->config->set('archive_topics_per_page', $this->request->variable('archive_topics_per_page', 15));
 			$this->config->set('archive_posts_per_page', $this->request->variable('archive_posts_per_page', 10));
 			$this->config->set('archive_hide_mod', $this->request->variable('archive_hide_mod', 1));
@@ -68,7 +67,6 @@ class main_module
 		$this->template->assign_vars(array(
 			'U_ACTION'						=> $this->u_action,
 			'S_ARCHIVE_VERSION'				=> isset($this->config['archive_version']) ? $this->config['archive_version'] : false,
-			'S_ARCHIVE_ENABLE'				=> isset($this->config['archive_enable']) ? $this->config['archive_enable'] : 0,
 			'S_ARCHIVE_TOPICS_PER_PAGE'		=> isset($this->config['archive_topics_per_page']) ? $this->config['archive_topics_per_page'] : 15,
 			'S_ARCHIVE_POSTS_PER_PAGE'		=> isset($this->config['archive_posts_per_page']) ? $this->config['archive_posts_per_page'] : 10,
 			'S_ARCHIVE_HIDE_MOD'			=> isset($this->config['archive_hide_mod']) ? $this->config['archive_hide_mod'] : 1,

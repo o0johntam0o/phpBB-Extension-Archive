@@ -36,7 +36,6 @@ class main
 	protected $pageview_t;
 	protected $pageview_f;
 	protected $pageview_page;
-	protected $archive_enable;
 	protected $topics_per_page;
 	protected $posts_per_page;
 	protected $hide_mod;
@@ -58,7 +57,6 @@ class main
 		$this->user->session_begin();
 		$this->auth->acl($this->user->data);
 
-		$this->archive_enable = isset($this->config['archive_enable']) ? $this->config['archive_enable'] : 0;
 		$this->topics_per_page = isset($this->config['archive_topics_per_page']) ? $this->config['archive_topics_per_page'] : 15;
 		$this->posts_per_page = isset($this->config['archive_posts_per_page']) ? $this->config['archive_posts_per_page'] : 10;
 		$this->hide_mod = isset($this->config['archive_hide_mod']) ? $this->config['archive_hide_mod'] : 1;
@@ -566,11 +564,6 @@ class main
 			'ARCHIVE_LINK_HOME'			=> $this->helper->route('o0johntam0o_archive_base_controller'),
 			'ARCHIVE_LINK_HOME_FULL'	=> $phpbb_path_helper->update_web_root_path($this->root_path . 'index.' . $this->php_ext),
 			));
-		
-		if (!$this->archive_enable)
-		{
-			return $this->helper->render('archive.html');
-		}
 		
 		if ($this->pageview_f == 0)
 		{

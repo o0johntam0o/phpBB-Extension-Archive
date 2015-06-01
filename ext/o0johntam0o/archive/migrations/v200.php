@@ -22,7 +22,6 @@ class v200 extends \phpbb\db\migration\migration
 		return array(
 			array('config.add', array('archive_version', '2.0.0')),
 			
-			array('config.add', array('archive_enable', 1)),
 			array('config.add', array('archive_topics_per_page', 15)),
 			array('config.add', array('archive_posts_per_page', 10)),
 			array('config.add', array('archive_hide_mod', 1)),

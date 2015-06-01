@@ -64,11 +64,6 @@ class main_listener implements EventSubscriberInterface
 
     public function assign_archive_link($event)
     {
-		if (!isset($this->config['archive_enable']) || !$this->config['archive_enable'])
-		{
-			return;
-		}
-		
 		if ($this->user->page['page_dir'] != '' || str_replace('.' . $this->php_ext, '', $this->user->page['page_name']) == 'archive')
 		{
 			return;

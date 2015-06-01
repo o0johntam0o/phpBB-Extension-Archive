@@ -6,15 +6,6 @@
 <form id="acp_archive" method="post" action="{U_ACTION}">
 	<fieldset>
 		<dl>
-			<dt><label>{L_ARCHIVE_ENABLE}</label><br /><span>{L_ARCHIVE_ENABLE_EXPLAIN}</span></dt>
-			<dd>
-				<input type="radio" class="radio" name="archive_enable" value="1" id="archive_enable_yes"<!-- IF S_ARCHIVE_ENABLE --> checked="checked"<!-- ENDIF --> />
-				<label for="archive_enable_yes"> {L_YES}</label>
-				<input type="radio" class="radio" name="archive_enable" value="0" id="archive_enable_no"<!-- IF not S_ARCHIVE_ENABLE --> checked="checked"<!-- ENDIF --> />
-				<label for="archive_enable_no"> {L_NO}</label>
-			</dd>
-		</dl>
-		<dl>
 			<dt><label for="archive_topics_per_page">{L_ARCHIVE_TOPICS_PER_PAGE}</label><br /><span>{L_ARCHIVE_TOPICS_PER_PAGE_EXPLAIN}</span></dt>
 			<dd>
 				<input type="text" maxlength="4" size="4" name="archive_topics_per_page" value="{S_ARCHIVE_TOPICS_PER_PAGE}" id="archive_topics_per_page" />
