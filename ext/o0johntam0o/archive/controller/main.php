@@ -65,7 +65,7 @@ class main
 	/**
 	*	@param int $id forum_id
 	*	@param string $hash hash code
-	*	@return bolean login state
+	*	@return boolean login state
 	*	@access protected
 	*/
 	protected function check_forum_login($id = 0, $hash = '')

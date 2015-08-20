@@ -37,6 +37,7 @@ class main_listener implements EventSubscriberInterface
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
+		$this->auth = $auth;
 		$this->config = $config;
 		$this->request = $request;
 		$this->php_ext = $php_ext;
